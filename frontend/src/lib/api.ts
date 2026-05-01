@@ -1,4 +1,7 @@
-const BASE = "";
+// In production the frontend is served under /proxy/ via the VibeQuant proxy.
+// import.meta.env.BASE_URL is set to that base at build time (e.g. "/proxy/").
+// We strip the trailing slash so we can prefix paths like `${BASE}/sessions`.
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
   const res = await fetch(`${BASE}${path}`, {

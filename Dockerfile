@@ -7,7 +7,7 @@ WORKDIR /app/frontend
 COPY frontend/package.json frontend/package-lock.json ./
 RUN npm ci --ignore-scripts
 COPY frontend/ ./
-RUN npm run build
+RUN VITE_BASE_URL=/proxy/ npm run build
 
 # ============================================================================
 # Stage 2: Python runtime

@@ -33,16 +33,19 @@ function wrap(Component: ComponentType) {
   );
 }
 
-export const router = createBrowserRouter([
-  {
-    element: <Layout />,
-    children: [
-      { path: "/", element: wrap(Home) },
-      { path: "/agent", element: wrap(Agent) },
-      { path: "/settings", element: wrap(Settings) },
-      { path: "/runs/:runId", element: wrap(RunDetail) },
-      { path: "/compare", element: wrap(Compare) },
-      { path: "/correlation", element: wrap(Correlation) },
-    ],
-  },
-]);
+export const router = createBrowserRouter(
+  [
+    {
+      element: <Layout />,
+      children: [
+        { path: "/", element: wrap(Home) },
+        { path: "/agent", element: wrap(Agent) },
+        { path: "/settings", element: wrap(Settings) },
+        { path: "/runs/:runId", element: wrap(RunDetail) },
+        { path: "/compare", element: wrap(Compare) },
+        { path: "/correlation", element: wrap(Correlation) },
+      ],
+    },
+  ],
+  { basename: import.meta.env.BASE_URL }
+);
