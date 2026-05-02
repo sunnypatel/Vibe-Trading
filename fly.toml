@@ -1,0 +1,4 @@
+# Minimal config — used only for `flyctl deploy --build-only` to push
+# the worker image to registry.fly.io/vibe-quant:worker.
+# No services or machines are deployed from this file.
+app = "vibe-quant"

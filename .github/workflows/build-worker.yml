@@ -1,0 +1,23 @@
+name: Build Worker Image
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: build-worker-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+
+      - name: Build and push worker image
+        run: flyctl deploy --remote-only --build-only --image-label worker
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
